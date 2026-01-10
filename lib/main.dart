@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+// providers
 import 'providers/audio_provider.dart';
 import 'providers/ai_provider.dart';
+
+// screens
 import 'screens/home_screen.dart';
+import 'screens/editor_screen.dart';
+import 'screens/recording_screen.dart';
+import 'screens/export_screen.dart';
+import 'screens/style_selection_screen.dart';
 
 void main() {
   runApp(const AppRoot());
 }
 
-/// Root widget – Providers fi MaterialApp walitti qabee qaba
+/// Root widget – Providers hunda of keessaa qaba
 class AppRoot extends StatelessWidget {
   const AppRoot({super.key});
 
@@ -25,7 +32,7 @@ class AppRoot extends StatelessWidget {
   }
 }
 
-/// App guddaa (MaterialApp)
+/// App guddaa – MaterialApp
 class SirbituuApp extends StatelessWidget {
   const SirbituuApp({super.key});
 
@@ -38,7 +45,18 @@ class SirbituuApp extends StatelessWidget {
         primarySwatch: Colors.green,
         useMaterial3: true,
       ),
+
+      /// Screen jalqabaa
       home: const HomeScreen(),
+
+      /// Routes (navigation)
+      routes: {
+        '/home': (context) => const HomeScreen(),
+        '/editor': (context) => const EditorScreen(),
+        '/recording': (context) => const RecordingScreen(),
+        '/export': (context) => const ExportScreen(),
+        '/style': (context) => const StyleSelectionScreen(),
+      },
     );
   }
 }
