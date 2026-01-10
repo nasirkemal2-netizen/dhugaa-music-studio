@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../providers/audio_provider.dart';
 import '../providers/ai_provider.dart';
 
 class EditorScreen extends StatelessWidget {
@@ -9,32 +8,28 @@ class EditorScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final audio = context.watch<AudioProvider>();
     final ai = context.watch<AIProvider>();
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Studio Editor'),
+        title: const Text('Audio Editor'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
+      body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              audio.isRecording
-                  ? 'Recording in progress...'
-                  : 'Ready to record',
-              style: const TextStyle(fontSize: 18),
+            Icon(
+              Icons.auto_fix_high,
+              size: 100,
+              color: ai.isProcessing ? Colors.orange : Colors.grey,
             ),
             const SizedBox(height: 20),
 
-            ElevatedButton(
-              onPressed: audio.isRecording
-                  ? audio.stopRecording
-                  : audio.startRecording,
-              child: Text(
-                audio.isRecording ? 'Stop Recording' : 'Start Recording',
-              ),
+            Text(
+              ai.isProcessing
+                  ? 'Processing audio with AI...'
+                  : 'Split vocals & instruments',
+              style: const TextStyle(fontSize: 18),
             ),
 
             const SizedBox(height: 30),
@@ -42,17 +37,12 @@ class EditorScreen extends StatelessWidget {
             ElevatedButton(
               onPressed: ai.isProcessing
                   ? null
-                  : () {
+                  : () async {
                       ai.startProcessing();
-                      Future.delayed(const Duration(seconds: 2), () {
-                        ai.stopProcessing();
-                      });
+                      await Future.delayed(const Duration(seconds: 3));
+                      ai.stopProcessing();
                     },
-              child: Text(
-                ai.isProcessing
-                    ? 'AI Processing...'
-                    : 'Generate AI Music',
-              ),
+              child: const Text('Start AI Split'),
             ),
           ],
         ),
