@@ -8,30 +8,38 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Dhugaa Music Studio'),
-        centerTitle: true,
       ),
-      body: Center(
+      body: Padding(
+        padding: const EdgeInsets.all(20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, '/recording');
+              },
               child: const Text('Record Voice'),
             ),
             const SizedBox(height: 16),
             ElevatedButton(
-              onPressed: () {},
-              child: const Text('AI Music Generator'),
+              onPressed: () {
+                Navigator.pushNamed(context, '/style');
+              },
+              child: const Text('Select Music Style'),
             ),
             const SizedBox(height: 16),
             ElevatedButton(
-              onPressed: () {},
-              child: const Text('Editor'),
+              onPressed: () {
+                Navigator.pushNamed(context, '/editor');
+              },
+              child: const Text('Edit Studio'),
             ),
             const SizedBox(height: 16),
             ElevatedButton(
-              onPressed: () {},
-              child: const Text('Export'),
+              onPressed: () {
+                Navigator.pushNamed(context, '/export');
+              },
+              child: const Text('Export Song'),
             ),
           ],
         ),
