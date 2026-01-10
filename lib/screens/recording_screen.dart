@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../providers/audio_provider.dart';
 
 class RecordingScreen extends StatelessWidget {
@@ -8,7 +8,7 @@ class RecordingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final audioProvider = Provider.of<AudioProvider>(context);
+    final audio = context.watch<AudioProvider>();
 
     return Scaffold(
       appBar: AppBar(
@@ -18,21 +18,28 @@ class RecordingScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              audioProvider.isRecording
-                  ? 'Recording...'
-                  : 'Press button to record',
-              style: const TextStyle(fontSize: 18),
+            Icon(
+              audio.isRecording ? Icons.mic : Icons.mic_none,
+              size: 100,
+              color: audio.isRecording ? Colors.red : Colors.grey,
             ),
             const SizedBox(height: 20),
+
+            Text(
+              audio.isRecording
+                  ? 'Recording...'
+                  : 'Tap to start recording',
+              style: const TextStyle(fontSize: 18),
+            ),
+
+            const SizedBox(height: 30),
+
             ElevatedButton(
-              onPressed: () {
-                audioProvider.isRecording
-                    ? audioProvider.stopRecording()
-                    : audioProvider.startRecording();
-              },
+              onPressed: audio.isRecording
+                  ? audio.stopRecording
+                  : audio.startRecording,
               child: Text(
-                audioProvider.isRecording ? 'Stop' : 'Start Recording',
+                audio.isRecording ? 'Stop' : 'Record',
               ),
             ),
           ],
