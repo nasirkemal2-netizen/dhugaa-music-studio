@@ -1,4 +1,4 @@
-🎶 DHUGAA MUSIC STUDIO
+DHUGAA MUSIC STUDIO
 
 AI Music Studio for Ethiopian Languages and Culture
 
