@@ -1,15 +1,24 @@
-# lyrics_generator.py
-# Phase 1c: Lyrics generation + AI melody
+# generator.py
+# Dhugaa Music Studio – Phase 1c
+# Simple lyrics generator (text-based)
+
 import os
 
+# Folder where lyrics will be saved
 LYRICS_DIR = "lyrics"
 os.makedirs(LYRICS_DIR, exist_ok=True)
 
-# -------- EXAMPLE LYRICS --------
+# Sample lyrics (Afaan Oromoo + English)
 lyrics_sample = """
-Yaa ooh aaaaa
-Siin jaaladha, qalbii koo guutuu siif kenna
-Alfee koo, si wajjin jiraachuu feena
+Dhugaan ifa dha
+Sagaleen qalbii namaa
+Sirbi keenya eenyummaa
+Aadaa keenyaaf faana
+
+Truth is light
+Music is identity
+Our voice is culture
+Our future is unity
 """
 
 def save_lyrics(filename, lyrics_text):
@@ -18,6 +27,5 @@ def save_lyrics(filename, lyrics_text):
         f.write(lyrics_text)
     print(f"Lyrics saved: {path}")
 
-# -------- MAIN --------
 if __name__ == "__main__":
     save_lyrics("sample_lyrics.txt", lyrics_sample)
